@@ -4,6 +4,30 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 
 	private Node<T> root;
 
+	public void preOrderTraversal(Node<T> node) {
+		if (root != null) {
+			System.out.println(node);
+			if (node.getLeftChild() != null) {
+				preOrderTraversal(node.getLeftChild());
+			}
+			if (node.getRightChild() != null) {
+				preOrderTraversal(node.getRightChild());
+			}
+		}
+	}
+
+	public void postOrderTraversal(Node<T> node) {
+		if (root != null) {
+			if (node.getLeftChild() != null) {
+				postOrderTraversal(node.getRightChild());
+			}
+			if (node.getRightChild() != null) {
+				postOrderTraversal(node.getRightChild());
+			}
+			System.out.println(node);
+		}
+	}
+
 	@Override
 	public void insert(T data) {
 
@@ -18,6 +42,8 @@ public class BinarySearchTree<T extends Comparable<T>> implements Tree<T> {
 	public void traversal() {
 		if (root != null) {
 			inOrderTraversal(root);
+			preOrderTraversal(root);
+			postOrderTraversal(root);
 		}
 	}
 
